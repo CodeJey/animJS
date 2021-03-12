@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SquareGame</title>
+    <style>
+        #mainDiv{
+            text-align: center;
+        }
+        #parent{
+            margin: 0 auto;
+            width: 800px;
+            height: 800px;
+            background-color: cyan;
+            position: relative;
+            background-image: url("map.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        #mover{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-image: url("crr.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .eventer{
+            width: 100px;
+            padding: 10px;
+            font-size: 120%;
+            color: yellow;
+            background-color: rgb(85, 85, 236);
+        }
+    </style>
+</head>
+<body>
+    <div id="mainDiv">
+        <button onclick="Oba()" class="eventer">MoveIt</button>
+            <br>
+            <br>
+        <div id="parent">
+            <div id="mover"></div>
+        </div>
+    </div>
+    <script>
+        var pos = document.getElementById('mover');
+        var fr = 0;
+        var mir;
+        function Oba(){
+            mir = window.setInterval(Fmi, 28);
+        }
+        function Fmi(){
+            if (fr == 696){ 
+                window.clearInterval(mir);
+                fr = 0;
+                pos.style.left = fr + 'px';
+                pos.style.top = fr + 'px';
+                // pos.style.rotate = 225 + "deg";
+                //fr++;
+            }
+            else{
+            fr+=6;
+            pos.style.left = fr + 'px';
+            pos.style.top = fr + 'px';
+            }
+        }
+
+    </script>
+</body>
+</html>
+<!-- rotate on 708 -->

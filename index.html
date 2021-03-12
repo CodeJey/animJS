@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SquareGame</title>
     <style>
-        body{
+        body {
             background-color: rgba(220, 20, 60, 0.39);
             background-image: radial-gradient(black, rgb(88, 26, 26));
             background-repeat: repeat;
         }
-        #mainDiv{
+
+        #mainDiv {
             text-align: center;
             width: 100%;
         }
-        #parent{
+
+        #parent {
             margin: 0 auto;
             width: 800px;
             height: 800px;
@@ -25,7 +28,8 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
-        #mover{
+
+        #mover {
             width: 100px;
             height: 100px;
             position: absolute;
@@ -33,7 +37,8 @@
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
-        .eventer{
+
+        .eventer {
             margin: 0 auto;
             border-radius: 10px;
             width: 40%;
@@ -42,62 +47,73 @@
             color: yellow;
             background-color: rgb(56, 56, 144);
         }
+
+        #myAudio {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
+    <audio autoplay id="myAudio">
+        <source src="iLikeToMoveIt.mp3" type="audio/mp3">
+    </audio>
     <div id="mainDiv">
         <button onclick="Oba()" class="eventer">MoveIt</button>
-            <br>
-            <br>
+        <br>
+        <br>
         <div id="parent">
             <div id="mover"></div>
         </div>
     </div>
     <script>
+        var au = document.getElementById("myAudio");
         var pos = document.getElementById('mover');
         var fr = 0;
         var mir;
         var offer = 570;
         var dister = 0;
-        function Oba(){
+        function Oba() {
             mir = window.setInterval(Fmi, 28);
+            au.autoplay = true;
+            au.load();
         }
-        function Fmi(){
-            if (fr < 708){
-                fr+=6;
+        function Fmi() {
+            if (fr < 708) {
+                fr += 6;
                 pos.style.left = fr + 'px';
                 pos.style.top = fr + 'px';
             }
-            if (fr == 708 ){
+            if (fr == 708) {
                 pos.style.transform = "rotate(225deg)";
                 fr++;
             }
-            if (fr > 708 && fr < 1308 ){
+            if (fr > 708 && fr < 1308) {
                 pos.style.top = offer + 'px';
-                offer-=6;
-                fr +=6;
+                offer -= 6;
+                fr += 6;
             }
-            if (fr == 1297){
+            if (fr == 1297) {
                 pos.style.transform = "rotate(90deg)";
-                fr ++;
+                fr++;
             }
-            if (fr >= 1297 && fr <= 2005){   
-                fr+=6;
-                dister+=6;
+            if (fr >= 1297 && fr <= 2005) {
+                fr += 6;
+                dister += 6;
                 pos.style.left = (708 - dister) + 'px';
                 pos.style.top = dister + 'px';
             }
-            if (fr == 2006){
+            if (fr == 2006) {
                 pos.style.transform = "rotate(225deg)";
                 pos.style.left = 0 + "px";
-                fr ++;
+                fr++;
                 offer = 570;
-               // window.clearInterval(mir);
+                // window.clearInterval(mir);
             }
-            if (fr > 2006 && fr < 2576){
+            if (fr > 2006 && fr < 2576) {
                 pos.style.top = offer + 'px';
-                offer-=6;
-                fr +=6;
+                offer -= 6;
+                fr += 6;
             }
             if (fr == 2577) {
                 location.reload();
@@ -108,5 +124,6 @@
 
     </script>
 </body>
+
 </html>
 <!-- rotate on 708 -->

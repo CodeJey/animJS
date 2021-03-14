@@ -7,17 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SquareGame</title>
     <style>
+        /* body style */
         body {
             background-color: rgba(220, 20, 60, 0.39);
             background-image: radial-gradient(black, rgb(88, 26, 26));
             background-repeat: repeat;
         }
 
+        /* main container */
         #mainDiv {
             text-align: center;
             width: 100%;
         }
 
+        /* activity container(map cont) */
         #parent {
             margin: 0 auto;
             width: 800px;
@@ -29,6 +32,7 @@
             background-size: 100% 100%;
         }
 
+        /* moving element(car) */
         #mover {
             width: 100px;
             height: 100px;
@@ -38,6 +42,7 @@
             background-size: 100% 100%;
         }
 
+        /* button */
         .eventer {
             margin: 0 auto;
             border-radius: 10px;
@@ -48,6 +53,7 @@
             background-color: rgb(56, 56, 144);
         }
 
+        /*style ho hide the audio player*/
         #myAudio {
             display: none;
         }
@@ -55,54 +61,72 @@
 </head>
 
 <body>
+    <!-- audio tag  -->
     <audio autoplay id="myAudio">
         <source src="iLikeToMoveIt.mp3" type="audio/mp3">
     </audio>
+    <!-- main container tag -->
     <div id="mainDiv">
+        <!--start of motion caller-->
         <button onclick="Oba()" class="eventer">MoveIt</button>
         <br>
         <br>
+        <!--map container-->
         <div id="parent">
+            <!--Car div container-->
             <div id="mover"></div>
         </div>
     </div>
     <script>
+        //audio variable
         var au = document.getElementById("myAudio");
+        //variable to get the id of the car to manipulate the coordinates easier
         var pos = document.getElementById('mover');
+        //beginnin coordinates var and control value
         var fr = 0;
+        //time variable
         var mir;
+        //variable to drag the car up reducind the space between car elem and the top of the parent
         var offer = 570;
+        //second diag. var
         var dister = 0;
+        //the function called by the button, containin the time intervals of calling the movements and playing the music
         function Oba() {
             mir = window.setInterval(Fmi, 28);
             au.autoplay = true;
             au.load();
         }
         function Fmi() {
+            //send car to the down left corner
             if (fr < 708) {
                 fr += 6;
                 pos.style.left = fr + 'px';
                 pos.style.top = fr + 'px';
             }
+            //rotate the car up
             if (fr == 708) {
                 pos.style.transform = "rotate(225deg)";
                 fr++;
             }
+            //send the car to the top
             if (fr > 708 && fr < 1308) {
                 pos.style.top = offer + 'px';
                 offer -= 6;
                 fr += 6;
             }
+            //rotate the car in position to pass the next diagonal
             if (fr == 1297) {
                 pos.style.transform = "rotate(90deg)";
                 fr++;
             }
+            //pass the next diagonal
             if (fr >= 1297 && fr <= 2005) {
                 fr += 6;
                 dister += 6;
                 pos.style.left = (708 - dister) + 'px';
                 pos.style.top = dister + 'px';
             }
+            //rotate the car in pos to be dragged to the next point
             if (fr == 2006) {
                 pos.style.transform = "rotate(225deg)";
                 pos.style.left = 0 + "px";
@@ -110,20 +134,19 @@
                 offer = 570;
                 // window.clearInterval(mir);
             }
+            //dragging the car to the left top(startin pos)
             if (fr > 2006 && fr < 2576) {
                 pos.style.top = offer + 'px';
                 offer -= 6;
                 fr += 6;
             }
+            //what to do when the start position is reached
             if (fr == 2577) {
                 location.reload();
                 window.clearInterval(mir);
-                // alert("si");
             }
         }
 
     </script>
 </body>
-
 </html>
-<!-- rotate on 708 -->
